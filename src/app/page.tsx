@@ -1,65 +1,156 @@
-import Image from "next/image";
+'use client';
+import { useState, useEffect } from 'react';
 
+// Öne Çıkan Resimler ve Başlıklar
+
+const highlights = [
+  { id: 1, url: '/images/SUPERLUX/dusakabin1.jpg', title: 'Gold Şıklığı' },
+  { id: 2, url: '/images/SUPERLUX/dusakabin2.jpg', title: 'Modern Tasarım' },
+  { id: 3, url: '/images/SUPERLUX/dusakabin3.jpg', title: 'Zarif Detaylar' },
+];
 export default function Home() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % highlights.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className='relativebg-brand-black font-sans'>
+      {/* HERO SECTION */}
+      <section className='relative h-screen w-full flex flex-col items-center justify-center'>
+        {/* Arka Plan Görseli - public/images/ içine attığın resmi buraya yaz */}
+        <div
+          className='absolute inset-0 bg-cover bg-center'
+          style={{
+            backgroundImage: `url('/images/OTTI/Otel_tipi1.jpg')`, // Resminin adını buraya yaz!
+          }}
+        >
+          {/* Karartma katmanı */}
+          <div className='absolute inset-0 overlay-soft'></div>
+        </div>
+
+        {/* Orta Metin Alanı */}
+        <div className='relative z-10 text-center space-y-4 px-6'>
+          <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white leading-none'>
+            Saf Estetik
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className='text-xs md:text-sm font-light tracking-[0.6em] text-white/50 uppercase'>
+            Banyonuzun Yeni Mimari Kimliği
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        {/* Kaydır İşareti (Mouse Wheel Efekti) */}
+        <div className='absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce'>
+          <div className='w-[1px] h-12 bg-gradient-to-b from-transparent to-white'></div>
         </div>
-      </main>
-    </div>
+      </section>
+      {/* 2. SEKSİYON: HİZMETLER (Resimli & Yazılı Geçiş) */}
+      <section className='flex flex-col md:flex-row h-auto md:h-screen bg-[#0a0a0a]'>
+        <div
+          className='w-full md:w-1/2 h-96 md:h-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000'
+          style={{ backgroundImage: `url('/images/KATYA/KATYA_SARI.jpg')` }}
+        ></div>
+
+        <div className='w-full md:w-1/2 flex flex-col justify-center px-12 md:px-24 py-20'>
+          <h2 className='text-4xl font-light text-white mb-8 border-l-2 border-amber-600 pl-6'>
+            Hizmetlerimiz
+          </h2>
+          <ul className='space-y-4 text-white/50 text-lg font-light italic'>
+            <li>• Özel Ölçü Duşakabin İmalatı</li>
+            <li>• Temperli Cam Aksesuarları</li>
+            <li>• Banyo Mimari Modelleme</li>
+            <li>• Kurumsal Proje Uygulama</li>
+          </ul>
+        </div>
+      </section>
+      {/* 3. SEKSİYON: ÖNE ÇIKAN TASARIMLAR (Animasyonlu Slider) */}
+      <section className='flex flex-col md:flex-row h-auto md:h-[80vh] bg-brand-black border-t border-white/5 overflow-hidden'>
+        {/* SOL: Estetik Sabit Yazı */}
+        <div className='w-full md:w-2/5 flex flex-col justify-center px-12 md:px-24 py-20 z-10'>
+          <div className='space-y-8'>
+            <div className='space-y-2'>
+              <span className='text-[10px] uppercase tracking-[0.6em] text-amber-600 font-semibold'>
+                Koleksiyon 2026
+              </span>
+              <h2 className='text-4xl md:text-6xl font-bold tracking-tighter text-white leading-tight'>
+                Öne Çıkan <br />{' '}
+                <span className='italic font-light opacity-80'>Tasarımlar</span>
+              </h2>
+            </div>
+
+            <div className='h-[1px] w-20 bg-amber-600/30'></div>
+
+            <p className='text-white/40 text-sm md:text-base leading-relaxed font-light italic tracking-wide max-w-sm'>
+              Banyonuzun ruhunu değiştiren, şeffaflığın ve metalin kusursuz
+              uyumuyla hazırlanan en yeni serilerimizi keşfedin.
+            </p>
+
+            {/* Slider Göstergeleri (Dots) */}
+            <div className='flex gap-4 pt-4'>
+              {highlights.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`h-[2px] transition-all duration-700 ${idx === activeSlide ? 'w-12 bg-amber-600' : 'w-6 bg-white/10'}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SAĞ: Animasyonlu Resim Geçişi */}
+        <div className='w-full md:w-3/5 h-[50vh] md:h-full relative overflow-hidden group bg-neutral-900'>
+          {highlights.map((img, index) => (
+            <div
+              key={img.id}
+              className={`absolute inset-0 bg-no-repeat bg-center transition-all duration-[1500ms] ease-in-out transform
+                ${index === activeSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}
+              `}
+              style={{
+                backgroundImage: `url('${img.url}')`,
+                backgroundSize: 'cover', // Eğer hala çok zoomlu gelirse 'contain' yapabiliriz ama 'cover' genelde standarttır.
+              }}
+            >
+              {/* Resim Üzeri Yazı Animasyonu */}
+              <div className='absolute bottom-12 left-12 z-20'>
+                <span
+                  className={`text-[11px] text-white/50 uppercase tracking-[0.4em] transition-all duration-1000 delay-500
+                  ${index === activeSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                >
+                  {img.title}
+                </span>
+              </div>
+              <div className='absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors'></div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. SEKSİYON: DEĞERLERİMİZ (İkonlu Alan) */}
+      <section className='py-32 px-10 grid grid-cols-1 md:grid-cols-4 gap-10 border-t border-white/5'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto'>
+          {[
+            { title: 'Geniş Ürün Yelpazesi', icon: '📐' },
+            { title: 'Profesyonel Ekip', icon: '🛠️' },
+            { title: 'Estetik Tasarım', icon: '✨' },
+            { title: 'Müşteri Memnuniyeti', icon: '🌿' },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className='text-center group p-8 hover:bg-white/[0.02] transition-all'
+            >
+              <div className='text-4xl mb-4 grayscale group-hover:grayscale-0'>
+                {item.icon}
+              </div>
+              <h3 className='text-white font-medium tracking-widest text-sm uppercase'>
+                {item.title}
+              </h3>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
