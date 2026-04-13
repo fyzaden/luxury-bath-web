@@ -17,24 +17,26 @@ export default function Home() {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
   return (
     <main className='relativebg-brand-black font-sans'>
       {/* HERO SECTION */}
       <section className='relative h-screen w-full flex flex-col items-center justify-center'>
         {/* Arka Plan Görseli - public/images/ içine attığın resmi buraya yaz */}
         <div
-          className='absolute inset-0 bg-cover bg-center'
+          className='absolute inset-0 bg-cover bg-center bg-no-repeat'
           style={{
-            backgroundImage: `url('/images/OTTI/Otel_tipi1.jpg')`, // Resminin adını buraya yaz!
+            backgroundImage: `url('/images/OTTI/Otel_tipi1.jpg')`,
+            backgroundAttachment: 'fixed', // Bu özellik resmi sabitler, sayfa üzerine kayar
           }}
         >
           {/* Karartma katmanı */}
-          <div className='absolute inset-0 overlay-soft'></div>
+          <div className='absolute inset-0 bg-black/40 overlay-soft'></div>
         </div>
 
         {/* Orta Metin Alanı */}
         <div className='relative z-10 text-center space-y-4 px-6'>
-          <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white leading-none'>
+          <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white opacity-80 leading-none drop-shadow-2xl'>
             Saf Estetik
           </h1>
           <p className='text-xs md:text-sm font-light tracking-[0.6em] text-white/50 uppercase'>
@@ -129,7 +131,7 @@ export default function Home() {
       </section>
 
       {/* 4. SEKSİYON: DEĞERLERİMİZ (İkonlu Alan) */}
-      <section className='py-32 px-10 grid grid-cols-1 md:grid-cols-4 gap-10 border-t border-white/5'>
+      <section className='py-32 px-10 bg-brand-black border-t border-white/5'>
         <div className='grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto'>
           {[
             { title: 'Geniş Ürün Yelpazesi', icon: '📐' },
@@ -139,12 +141,19 @@ export default function Home() {
           ].map((item, index) => (
             <div
               key={index}
-              className='text-center group p-8 hover:bg-white/[0.02] transition-all'
+              className='relative group p-10 flex flex-col items-center justify-center transition-all duration-500'
             >
-              <div className='text-4xl mb-4 grayscale group-hover:grayscale-0'>
+              {/* Modern Amber Çerçeve */}
+              <div className='absolute inset-0 border border-white/5 group-hover:border-amber-600/40 transition-all duration-500'></div>
+
+              {/* Köşe Detayları (Lüks görünüm için) */}
+              <div className='absolute top-0 left-0 w-3 h-3 border-t border-l border-amber-600 opacity-0 group-hover:opacity-100 transition-all duration-700'></div>
+              <div className='absolute bottom-0 right-0 w-3 h-3 border-b border-r border-amber-600 opacity-0 group-hover:opacity-100 transition-all duration-700'></div>
+
+              <div className='text-4xl mb-6 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500'>
                 {item.icon}
               </div>
-              <h3 className='text-white font-medium tracking-widest text-sm uppercase'>
+              <h3 className='text-white/70 group-hover:text-amber-600 font-medium tracking-[0.2em] text-[11px] uppercase text-center transition-colors'>
                 {item.title}
               </h3>
             </div>
