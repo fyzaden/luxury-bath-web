@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 const highlights = [
   { id: 1, url: '/images/SUPERLUX/dusakabin1.jpg', title: 'Gold Şıklığı' },
   { id: 2, url: '/images/SUPERLUX/dusakabin2.jpg', title: 'Modern Tasarım' },
-  { id: 3, url: '/images/SUPERLUX/dusakabin3.jpg', title: 'Zarif Detaylar' },
+  { id: 3, url: '/images/SUPERLUX/dusakabin5.jpeg', title: 'Zarif Detaylar' },
 ];
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -19,9 +19,9 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='relativebg-brand-black font-sans'>
+    <main className='relative bg-brand-black font-sans'>
       {/* HERO SECTION */}
-      <section className='relative h-screen w-full flex flex-col items-center justify-center'>
+      <section className='relative h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-48 pb-20 px-10 max-w-7xl mx-auto'>
         {/* Arka Plan Görseli - public/images/ içine attığın resmi buraya yaz */}
         <div
           className='absolute inset-0 bg-cover bg-center bg-no-repeat'
@@ -31,15 +31,15 @@ export default function Home() {
           }}
         >
           {/* Karartma katmanı */}
-          <div className='absolute inset-0 bg-black/40 overlay-soft'></div>
+          <div className='absolute inset-0 bg-black/30 overlay-soft '></div>
         </div>
 
         {/* Orta Metin Alanı */}
         <div className='relative z-10 text-center space-y-4 px-6'>
-          <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white opacity-80 leading-none drop-shadow-2xl'>
-            Saf Estetik
+          <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white  leading-none drop-shadow-2xl'>
+            Estetik Dokunuş
           </h1>
-          <p className='text-xs md:text-sm font-light tracking-[0.6em] text-white/50 uppercase'>
+          <p className='text-xs md:text-sm font-light tracking-[0.6em] text-white/70 uppercase'>
             Banyonuzun Yeni Mimari Kimliği
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function Home() {
         <div className='w-full md:w-2/5 flex flex-col justify-center px-12 md:px-24 py-20 z-10'>
           <div className='space-y-8'>
             <div className='space-y-2'>
-              <span className='text-[10px] uppercase tracking-[0.6em] text-amber-600 font-semibold'>
+              <span className='text-[10px] uppercase tracking-[0.6em] text-amber-600 font-semibold '>
                 Koleksiyon 2026
               </span>
               <h2 className='text-4xl md:text-6xl font-bold tracking-tighter text-white leading-tight'>
@@ -107,12 +107,13 @@ export default function Home() {
           {highlights.map((img, index) => (
             <div
               key={img.id}
-              className={`absolute inset-0 bg-no-repeat bg-center transition-all duration-[1500ms] ease-in-out transform
-                ${index === activeSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}
+              className={`absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-in-out transform
+                ${index === activeSlide ? 'opacity-100 scale-105' : 'opacity-0 scale-100'}
               `}
               style={{
                 backgroundImage: `url('${img.url}')`,
-                backgroundSize: 'cover', // Eğer hala çok zoomlu gelirse 'contain' yapabiliriz ama 'cover' genelde standarttır.
+                backgroundSize: 'cover',
+                // Eğer hala çok zoomlu gelirse 'contain' yapabiliriz ama 'cover' genelde standarttır.
               }}
             >
               {/* Resim Üzeri Yazı Animasyonu */}

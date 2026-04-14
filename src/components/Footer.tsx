@@ -35,10 +35,10 @@ export default function Footer() {
           <div className='flex flex-col md:items-center space-y-4 pt-2'>
             <div className='flex flex-col gap-3 text-[12px] uppercase tracking-[0.3em] text-white/40'>
               <Link href='/' className='hover:text-white transition-colors'>
-                Ana Sayfa
+                AnaSayfa
               </Link>
               <Link
-                href='/hakkımızda'
+                href='/hakkimizda'
                 className='hover:text-white transition-colors'
               >
                 Hakkımızda
