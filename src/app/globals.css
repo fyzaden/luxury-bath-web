@@ -1,9 +1,10 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-brand-black: #0d0d0d;
+  --color-brand-black: #222222;
   --color-brand-gold: #c5a059;
   --color-brand-white: #ffffff;
+  --color-brand-surface: #1a1a1a;
 }
 html {
   scroll-behavior: smooth;
@@ -21,7 +22,7 @@ body {
 .overlay-soft {
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.4)
+    rgba(17, 17, 17, 0.1),
+    rgba(17, 17, 17, 0.6)
   );
 }

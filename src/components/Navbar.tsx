@@ -18,14 +18,14 @@ export default function Navbar() {
   return (
     <nav className='fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-brand-black/20 backdrop-blur-md border-white/5'>
       {/* Sol Taraf: Logo */}
-      <div className='flex flex-col text-white z-[60]'>
+      <Link href='/' className='flex flex-col text-white z-[60]'>
         <span className='text-2xl md:text-3xl font-bold tracking-tighter leading-none'>
           GNL
         </span>
         <span className='text-[8px] font-medium uppercase tracking-[0.3em] mt-1 text-amber-600'>
           Duşakabin ve Cam Aksesuarları
         </span>
-      </div>
+      </Link>
 
       {/* Masaüstü Linkler (Sadece LG ve üzeri) */}
       <div className='hidden lg:flex gap-8 text-[11px] font-semibold tracking-[0.2em] text-white/80'>

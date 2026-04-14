@@ -49,7 +49,7 @@ export default function Home() {
         </div>
       </section>
       {/* 2. SEKSİYON: HİZMETLER (Resimli & Yazılı Geçiş) */}
-      <section className='flex flex-col md:flex-row h-auto md:h-screen bg-[#0a0a0a]'>
+      <section className='flex flex-col md:flex-row h-auto md:h-screen bg-[#222222]'>
         <div
           className='w-full md:w-1/2 h-96 md:h-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000'
           style={{ backgroundImage: `url('/images/KATYA/KATYA_SARI.jpg')` }}

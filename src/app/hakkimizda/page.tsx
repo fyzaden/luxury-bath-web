@@ -40,8 +40,8 @@ export default function Hakkimizda() {
           <div className='space-y-6 text-white/50 font-light leading-loose text-lg'>
             <p>
               2023 yılında %100 yerli sermaye ve yerli işgücü ile temelleri
-              atılan GNL Duşakabin ve Cam Aksesuarları, Konya’nın üretim gücünü
-              modern mimariyle birleştiren vizyoner bir markadır. Hızla
+              atılan GNL INOVASYON YAPI SAN VE TİC LTD ŞTİ, Konya’nın üretim
+              gücünü modern mimariyle birleştiren vizyoner bir markadır. Hızla
               genişleyen ürün yelpazemiz ve sürekli gelişen teknolojik
               altyapımızla, bugün yaşam alanlarında estetik ve kaliteyi bir
               arada arayanların öncelikli tercihi olmanın gururunu yaşıyoruz.
