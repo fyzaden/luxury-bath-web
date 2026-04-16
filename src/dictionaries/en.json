@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "references": "References",
+    "contact": "Contact"
+  },
+  "footer": {
+    "rights": "All Rights Reserved.",
+    "design": "Designed by"
+  }
+}

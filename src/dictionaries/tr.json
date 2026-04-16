@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "home": "Anasayfa",
+    "products": "Ürünler",
+    "about": "Hakkımızda",
+    "contact": "İletişim"
+  },
+  "footer": {
+    "rights": "Tüm Hakları Saklıdır.",
+    "design": "Tasarım"
+  }
+}

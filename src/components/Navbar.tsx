@@ -2,17 +2,23 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import LangSwitcher from './LangSwitcher';
 
-export default function Navbar() {
+interface NavbarProps {
+  dict: any;
+  lang: string;
+}
+
+export default function Navbar({ dict, lang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Linkleri merkezi bir yerde tutalım ki düzenlemesi kolay olsun
   const navLinks = [
-    { name: 'ANASAYFA', href: '/' },
-    { name: 'HAKKIMIZDA', href: '/hakkimizda' },
-    { name: 'ÜRÜNLER', href: '/urunler' },
-    { name: 'REFERANSLAR', href: '/referanslar' },
-    { name: 'İLETİŞİM', href: '/iletisim' },
+    { name: 'ANASAYFA', href: `/${lang}` },
+    { name: 'HAKKIMIZDA', href: `/${lang}/hakkimizda` },
+    { name: 'ÜRÜNLER', href: `/${lang}/urunler` },
+    { name: 'REFERANSLAR', href: `/${lang}/referanslar` },
+    { name: 'İLETİŞİM', href: `/${lang}/iletisim` },
   ];
 
   return (
@@ -54,7 +60,7 @@ export default function Navbar() {
         {/* Minimal Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className='flex flex-col gap-1.5 px-2 py-1'
+          className='lg:hidden flex flex-col gap-1.5 px-2 py-1 z-70'
         >
           <motion.div
             animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
@@ -110,6 +116,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <LangSwitcher />
     </nav>
   );
 }

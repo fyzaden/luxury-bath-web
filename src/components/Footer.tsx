@@ -1,31 +1,81 @@
 import Link from 'next/link';
-export default function Footer() {
+
+interface FooterProps {
+  dict: any;
+}
+export default function Footer({ dict }: FooterProps) {
   return (
     <footer className='bg-[#111111] pt-20 pb-12 px-10 border-t border-white/5'>
       <div className='max-w-7xl mx-auto'>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-16 mb-20 items-start'>
           {/* Sütun 1: İletişim Bilgileri */}
           <div className='space-y-8'>
-            <h3 className='text-3xl font-light text-white italic tracking-tighter'>
+            <h3 className='text-3xl font-light text-amber-600 italic tracking-tighter'>
               Bize Ulaşın
             </h3>
             <div className='space-y-5 text-white/50 text-[14px] tracking-wide'>
               <div className='flex items-start gap-4'>
-                <span className='opacity-50 italic text-lg leading-none'>
-                  Adres:
-                </span>
-                <p>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='40'
+                  height='40'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='#c5a059'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  className='mt-1 opacity-70 group-hover:opacity-100 transition-opacity'
+                >
+                  <path d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z' />
+                  <circle cx='12' cy='10' r='3' />
+                </svg>
+                <p className='group-hover:text-white transition-colors'>
                   Horozluhan Mah. Saraycık Sok. No:123
                   <br />
                   Selçuklu, Konya
                 </p>
               </div>
-
+              {/* E-Posta */}
+              <div>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='18'
+                  height='18'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='#c5a059'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  className='opacity-70 group-hover:opacity-100 transition-opacity'
+                >
+                  <rect width='20' height='16' x='2' y='4' rx='2' />
+                  <path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7' />
+                </svg>
+                <p className='group-hover:text-white transition-colors'>
+                  info@gnldusakabin.com
+                </p>
+              </div>
+              {/* Tel */}
               <div className='flex items-center gap-4'>
-                <span className='opacity-50 italic text-lg leading-none'>
-                  Tel:
-                </span>
-                <p>(+90) 543 241 25 27</p>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='18'
+                  height='18'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='#c5a059'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  className='opacity-70 group-hover:opacity-100 transition-opacity'
+                >
+                  <path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z' />
+                </svg>
+                <p className='group-hover:text-white transition-colors'>
+                  (+90) 543 241 25 27
+                </p>
               </div>
             </div>
             {/* Orta: Sosyal Medya İkonları */}
@@ -144,7 +194,7 @@ export default function Footer() {
 
             <div className='text-right'>
               <p className='text-[11px] text-white/30 tracking-widest'>
-                Design by{' '}
+                Design |{' '}
                 <span className='text-white/60 font-bold uppercase'>
                   Feyza Gazioğlu
                 </span>
@@ -156,13 +206,16 @@ export default function Footer() {
         {/* Alt Bar: Telif Hakkı ve Kurumsal Linkler */}
         <div className='pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4'>
           <p className='text-[10px] text-white/20 uppercase tracking-[0.25em]'>
-            © 2026 GNL İNOVASYON. Tüm Hakları Saklıdır.
+            {dict.rights} © 2026 GNL İNOVASYON. Tüm Hakları Saklıdır.
           </p>
           <div className='flex gap-8 text-[10px] text-white/30 uppercase tracking-widest italic'>
-            <a href='#' className='hover:text-white transition-all'>
+            <a href='/kvkk' className='hover:text-white transition-all'>
               KVKK
             </a>
-            <a href='#' className='hover:text-white transition-all'>
+            <a
+              href='/cerez-politikasi'
+              className='hover:text-white transition-all'
+            >
               Çerez Politikası
             </a>
           </div>
