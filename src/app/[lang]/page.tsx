@@ -21,10 +21,10 @@ export default function Home() {
   return (
     <main className='relative bg-brand-black font-sans'>
       {/* HERO SECTION */}
-      <section className='relative h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-48 pb-20 px-10 max-w-7xl mx-auto'>
+      <section className='relative h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-48 pb-20 px-10 '>
         {/* Arka Plan Görseli - public/images/ içine attığın resmi buraya yaz */}
         <div
-          className='absolute inset-0 bg-cover bg-center bg-no-repeat'
+          className='absolute inset-0 bg-cover bg-center bg-no-repeat '
           style={{
             backgroundImage: `url('/images/OTTI/Otel_tipi1.jpg')`,
             backgroundAttachment: 'fixed', // Bu özellik resmi sabitler, sayfa üzerine kayar
@@ -39,7 +39,7 @@ export default function Home() {
           <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white  leading-none drop-shadow-2xl'>
             Estetik Dokunuş
           </h1>
-          <p className='text-xs md:text-sm font-light tracking-[0.6em] text-white/70 uppercase'>
+          <p className='text-xs md:text-sm font-light tracking-[0.6em] text-amber-600 uppercase'>
             Banyonuzun Yeni Mimari Kimliği
           </p>
         </div>

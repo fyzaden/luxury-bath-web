@@ -11,12 +11,12 @@ interface NavbarProps {
 
 export default function Navbar({ dict, lang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   // Linkleri merkezi bir yerde tutalım ki düzenlemesi kolay olsun
   const navLinks = [
     { name: 'ANASAYFA', href: `/${lang}` },
     { name: 'HAKKIMIZDA', href: `/${lang}/hakkimizda` },
-    { name: 'ÜRÜNLER', href: `/${lang}/urunler` },
     { name: 'REFERANSLAR', href: `/${lang}/referanslar` },
     { name: 'İLETİŞİM', href: `/${lang}/iletisim` },
   ];
@@ -34,30 +34,74 @@ export default function Navbar({ dict, lang }: NavbarProps) {
       </Link>
 
       {/* Masaüstü Linkler (Sadece LG ve üzeri) */}
-      <div className='hidden lg:flex gap-8 text-[11px] font-semibold tracking-[0.2em] text-white/80'>
-        {navLinks.map((link) => (
-          <Link
-            key={link.name}
-            href={link.href}
-            className='hover:text-amber-600 transition-all'
-          >
-            {link.name}
-          </Link>
-        ))}
+      <div className='hidden lg:flex gap-8 text-[11px] font-semibold tracking-[0.2em] text-white/80 items-center'>
+        <Link href={`/${lang}`} className='hover:text-amber-600 transition-all'>
+          ANASAYFA
+        </Link>
+        <Link
+          href={`/${lang}/hakkimizda`}
+          className='hover:text-amber-600 transition-all'
+        >
+          HAKKIMIZDA
+        </Link>
+
+        {/* ÜRÜNLER DROPDOWN (DESKTOP) */}
+        <div
+          className='relative'
+          onMouseEnter={() => setIsProductsOpen(true)}
+          onMouseLeave={() => setIsProductsOpen(false)}
+        >
+          <button className='hover:text-amber-600 transition-all uppercase flex items-center gap-1 cursor-default'>
+            ÜRÜNLER
+            <motion.span
+              animate={{ rotate: isProductsOpen ? 180 : 0 }}
+              className='text-[8px]'
+            >
+              ▼
+            </motion.span>
+          </button>
+
+          <AnimatePresence>
+            {isProductsOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className='absolute top-full left-0 mt-2 w-52 bg-black/80 backdrop-blur-xl border border-white/10 p-2 rounded-sm shadow-2xl'
+              >
+                <Link
+                  href={`/${lang}/urunler/dus-kabinleri`}
+                  className='block px-4 py-3 text-[9px] hover:bg-amber-600/20 hover:text-amber-600 transition-all border-b border-white/5'
+                >
+                  DUŞ KABİNLERİ
+                </Link>
+                <Link
+                  href={`/${lang}/urunler/cam-aksesuarlari`}
+                  className='block px-4 py-3 text-[9px] hover:bg-amber-600/20 hover:text-amber-600 transition-all'
+                >
+                  CAM AKSESUARLARI
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <Link
+          href={`/${lang}/referanslar`}
+          className='hover:text-amber-600 transition-all'
+        >
+          REFERANSLAR
+        </Link>
+        <Link
+          href={`/${lang}/iletisim`}
+          className='hover:text-amber-600 transition-all'
+        >
+          İLETİŞİM
+        </Link>
       </div>
 
       {/* Sağ Taraf: Dil & Hamburger */}
       <div className='flex items-center gap-6'>
-        <div className='hidden md:flex gap-4 text-[11px] font-bold tracking-widest text-white/40'>
-          <button className='text-white hover:text-amber-600 transition-colors uppercase'>
-            TR
-          </button>
-          <button className='hover:text-white transition-colors uppercase'>
-            EN
-          </button>
-        </div>
-
-        {/* Minimal Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className='lg:hidden flex flex-col gap-1.5 px-2 py-1 z-70'
@@ -77,41 +121,66 @@ export default function Navbar({ dict, lang }: NavbarProps) {
         </button>
       </div>
 
-      {/* KÜÇÜK SAYDAM DROPDOWN MENÜ */}
+      {/* MOBİL MENÜ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className='absolute top-23 right-6 md:right-5w-48 bg-brand-black/50 backdrop-blur-xl border border-white/10 p-6 rounded-sm shadow-2xl overflow-hidden'
+            className='absolute top-24 right-6 w-56 bg-brand-black/80 backdrop-blur-2xl border border-white/10 p-6 rounded-sm shadow-2xl overflow-hidden z-50'
           >
             <div className='flex flex-col gap-5'>
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: 5 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link
-                    onClick={() => setIsOpen(false)}
-                    href={link.href}
-                    className='text-[10px] font-medium tracking-[0.3em] text-white/70 hover:text-amber-600 transition-colors uppercase block'
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={`/${lang}`}
+                className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
+              >
+                ANASAYFA
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={`/${lang}/hakkimizda`}
+                className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
+              >
+                HAKKIMIZDA
+              </Link>
 
-              {/* Mobilde Dil Seçeneği (Opsiyonel) */}
-              <div className='md:hidden flex gap-3 pt-4 border-t border-white/5 mt-2'>
-                <button className='text-[10px] text-amber-600 font-bold'>
-                  TR
-                </button>
-                <button className='text-[10px] text-white/40'>EN</button>
+              {/* MOBİL ÜRÜNLER ALT LİNKLERİ */}
+              <div className='flex flex-col gap-3 pl-2 border-l border-amber-600/30'>
+                <span className='text-[9px] text-amber-600 font-bold tracking-widest'>
+                  ÜRÜNLER
+                </span>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  href={`/${lang}/urunler/dus-kabinleri`}
+                  className='text-[9px] text-white/50 hover:text-white uppercase'
+                >
+                  - Duş Kabinleri
+                </Link>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  href={`/${lang}/urunler/cam-aksesuarlari`}
+                  className='text-[9px] text-white/50 hover:text-white uppercase'
+                >
+                  - Cam Aksesuarları
+                </Link>
               </div>
+
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={`/${lang}/referanslar`}
+                className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
+              >
+                REFERANSLAR
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={`/${lang}/iletisim`}
+                className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
+              >
+                İLETİŞİM
+              </Link>
             </div>
           </motion.div>
         )}

@@ -14,14 +14,17 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params, // HATA BURADAYDI: Buraya params eklenmemişti.
 }: {
   children: React.ReactNode;
   params: Promise<{ lang: 'tr' | 'en' }>;
 }) {
+  // Next.js 15'te params bir Promise olduğu için await ile çözüyoruz
   const { lang } = await params;
-  const dict = await getDictionary(lang); // Sözlüğü çekiyoruz
+  const dict = await getDictionary(lang);
+
   return (
-    <html lang='tr'>
+    <html lang={lang} suppressHydrationWarning>
       <body className='antialiased font-sans selection:bg-white selection:text-black'>
         <Navbar dict={dict.nav} lang={lang} />
         {children}

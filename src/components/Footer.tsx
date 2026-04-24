@@ -206,7 +206,7 @@ export default function Footer({ dict }: FooterProps) {
         {/* Alt Bar: Telif Hakkı ve Kurumsal Linkler */}
         <div className='pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4'>
           <p className='text-[10px] text-white/20 uppercase tracking-[0.25em]'>
-            {dict.rights} © 2026 GNL İNOVASYON. Tüm Hakları Saklıdır.
+            {dict?.rights} © 2026 GNL İNOVASYON. Tüm Hakları Saklıdır.
           </p>
           <div className='flex gap-8 text-[10px] text-white/30 uppercase tracking-widest italic'>
             <a href='/kvkk' className='hover:text-white transition-all'>

@@ -1,16 +1,25 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// 1. ÖNEMLİ: Fonksiyonu "default" olarak dışa aktardığından emin ol
-export default function middleware(request: NextRequest) {
+// Next.js'in "isimlendirilmiş export" beklentisini karşılamak için fonksiyon adını 'proxy' yapıyoruz
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Statik dosyaları ve Sanity studio'yu koru
+  const locales = ['tr', 'en'];
+
+  // 1. Dil zaten varsa devam et
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+  );
+
+  if (pathnameHasLocale) return NextResponse.next();
+
+  // 2. Statik dosyaları dışla
   if (
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/studio') ||
     pathname.includes('/api/') ||
-    pathname.includes('/images/') ||
+    pathname.includes('/studio') ||
+    pathname.startsWith('/images') ||
     pathname.endsWith('.ico') ||
     pathname.endsWith('.png') ||
     pathname.endsWith('.jpg') ||
@@ -19,23 +28,16 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const locales = ['tr', 'en'];
-  const defaultLocale = 'tr';
-
-  // Mevcut URL dil kodu içeriyor mu?
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
-  );
-
-  if (pathnameHasLocale) return NextResponse.next();
-
-  // Dil kodu yoksa yönlendir
+  // 3. Dil yoksa yönlendir
   const url = request.nextUrl.clone();
-  url.pathname = `/${defaultLocale}${pathname}`;
+  url.pathname = `/tr${pathname}`;
   return NextResponse.redirect(url);
 }
 
-// 2. Matcher ayarları
+// Next.js'in "default export" beklentisini karşılamak için
+export default proxy;
+
+// Matcher ayarları
 export const config = {
   matcher: [
     '/((?!api|_next/static|_next/image|favicon.ico|logo.png|studio).*)',
