@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Sayfa kaydırma miktarını dinle
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -37,11 +36,8 @@ export default function ScrollToTop() {
           className='fixed bottom-8 right-8 z-[90] group'
           aria-label='Yukarı Çık'
         >
-          {/* Arka Plan Halkası */}
           <div className='relative flex items-center justify-center w-12 h-12'>
             <div className='absolute inset-0 bg-brand-black/80 backdrop-blur-md border border-white/10 rounded-full transition-all duration-300 group-hover:border-amber-600/50 group-hover:scale-110' />
-
-            {/* Ok İkonu (SVG) */}
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='20'

@@ -3,11 +3,60 @@
     "home": "Home",
     "about": "About Us",
     "products": "Products",
+    "shower_cabins": "Shower Cabins",
+    "glass_accessories": "Glass Accessories",
     "references": "References",
     "contact": "Contact"
   },
+  "home": {
+    "hero_title": "Aesthetic Touch",
+    "hero_subtitle": "Your Bathroom's New Architectural Identity",
+    "services_title": "Our Services",
+    "service_1": "Custom Size Shower Cabin Production",
+    "service_2": "Tempered Glass Accessories",
+    "service_3": "Bathroom Architectural Modeling",
+    "service_4": "Corporate Project Application",
+    "featured_tag": "Collection 2026",
+    "featured_title_1": "Featured",
+    "featured_title_2": "Designs",
+    "featured_desc": "Discover our newest series prepared with the perfect harmony of transparency and metal, changing the soul of your bathroom.",
+    "values_1": "Wide Product Range",
+    "values_2": "Professional Team",
+    "values_3": "Aesthetic Design",
+    "values_4": "Customer Satisfaction"
+  },
+  "about": {
+    "title_1": "The Aesthetic Touch of Modernity",
+    "title_2": "A Konya Brand, A World Standard",
+    "p1": "Founded in 2023 with 100% domestic capital and domestic workforce, GNL INOVASYON YAPI SAN VE TIC LTD STI is a visionary brand that combines Konya's production power with modern architecture.",
+    "p2": "The CE Certificate we possess for all our products is a testament to our commitment to international quality and safety standards.",
+    "stat_1": "Years of Experience",
+    "stat_2": "Completed Projects",
+    "badge_1": "Flawless",
+    "badge_2": "Workmanship",
+    "quote": "When the clarity of glass meets the tranquility of water; design ceases to be merely a form and transforms into a life experience.",
+    "distributorship_title": "Our Authorized Dealers",
+    "distributorship_desc": "As an authorized dealer of Shower, one of the leading brands in the sector, we provide services at the highest quality standards."
+  },
   "footer": {
-    "rights": "All Rights Reserved.",
-    "design": "Designed by"
+    "description": "GNL Innovation adds value to your living spaces with modern bathroom solutions and aesthetic touches.",
+    "quick_links": "Quick Menu",
+    "contact_us": "Contact Us",
+    "rights": "All Rights Reserved",
+    "design": "Designed by",
+    "cookies": "Cookie Policy"
+  },
+  "contact": {
+    "title_1": "Your Ideas",
+    "title_2": "Put Them into Action",
+    "address_label": "Address",
+    "email_label": "Email",
+    "phone_label": "Phone",
+    "hours_label": "Working Hours",
+    "days": "Monday - Saturday",
+    "name_field": "Your Name",
+    "email_field": "Email",
+    "message_field": "Your Message",
+    "send_button": "Send Message"
   }
 }

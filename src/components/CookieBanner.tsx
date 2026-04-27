@@ -7,7 +7,6 @@ export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Daha önce kabul edilip edilmediğini kontrol et
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
       setIsVisible(true);

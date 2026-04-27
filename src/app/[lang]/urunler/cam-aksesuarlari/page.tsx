@@ -7,8 +7,7 @@ export default async function CamAksesuarlariPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  // Burada sadece 'cam-aksesuarlari' olarak işaretlediğin kategoriler gelecek
-  const categories = await getCategoriesByParent('cam-aksesuarlari');
+  const categories = await getCategoriesByParent('cam-aksesuarlari', lang);
 
   return (
     <div className='min-h-screen pt-32 pb-20 px-6 md:px-12 bg-black text-white'>

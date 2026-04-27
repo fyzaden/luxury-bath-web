@@ -1,4 +1,3 @@
-// src/app/cerez-politikasi/page.tsx
 export default function CookiePolicy() {
   return (
     <main className='bg-brand-black min-h-screen pt-40 pb-20 px-6 md:px-12'>

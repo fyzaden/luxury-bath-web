@@ -22,7 +22,7 @@ export const categoryType = defineType({
       title: 'Kategori Görseli',
       type: 'image',
       options: {
-        hotspot: true, // İşte tam buraya yazılıyor
+        hotspot: true,
       },
     }),
     defineField({

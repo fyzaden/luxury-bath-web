@@ -4,55 +4,43 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import LangSwitcher from './LangSwitcher';
 
-interface NavbarProps {
-  dict: any;
-  lang: string;
-}
-
-export default function Navbar({ dict, lang }: NavbarProps) {
+export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
 
-  // Linkleri merkezi bir yerde tutalım ki düzenlemesi kolay olsun
-  const navLinks = [
-    { name: 'ANASAYFA', href: `/${lang}` },
-    { name: 'HAKKIMIZDA', href: `/${lang}/hakkimizda` },
-    { name: 'REFERANSLAR', href: `/${lang}/referanslar` },
-    { name: 'İLETİŞİM', href: `/${lang}/iletisim` },
-  ];
+  const nav = dict.nav;
 
   return (
     <nav className='fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-brand-black/20 backdrop-blur-md border-white/5'>
-      {/* Sol Taraf: Logo */}
-      <Link href='/' className='flex flex-col text-white z-[60]'>
-        <span className='text-2xl md:text-3xl font-bold tracking-tighter leading-none'>
+      <Link href={`/${lang}`} className='flex flex-col text-white z-[60]'>
+        <span className='text-3xl md:text-3xl font-bold tracking-tighter leading-none'>
           GNL
         </span>
-        <span className='text-[8px] font-medium uppercase tracking-[0.3em] mt-1 text-amber-600'>
-          Duşakabin ve Cam Aksesuarları
+        <span className='text-[10px] font-medium uppercase tracking-[0.3em] mt-1 text-amber-600'>
+          {lang === 'tr'
+            ? 'Duşakabin ve Cam Aksesuarları'
+            : 'Shower Cabins and Glass Accessories'}
         </span>
       </Link>
 
-      {/* Masaüstü Linkler (Sadece LG ve üzeri) */}
-      <div className='hidden lg:flex gap-8 text-[11px] font-semibold tracking-[0.2em] text-white/80 items-center'>
+      <div className='hidden lg:flex gap-8 text-[12px] font-semibold tracking-[0.2em] uppercase  text-white/80 items-center'>
         <Link href={`/${lang}`} className='hover:text-amber-600 transition-all'>
-          ANASAYFA
+          {nav.home}
         </Link>
         <Link
           href={`/${lang}/hakkimizda`}
           className='hover:text-amber-600 transition-all'
         >
-          HAKKIMIZDA
+          {nav.about}
         </Link>
 
-        {/* ÜRÜNLER DROPDOWN (DESKTOP) */}
         <div
           className='relative'
           onMouseEnter={() => setIsProductsOpen(true)}
           onMouseLeave={() => setIsProductsOpen(false)}
         >
           <button className='hover:text-amber-600 transition-all uppercase flex items-center gap-1 cursor-default'>
-            ÜRÜNLER
+            {nav.products}
             <motion.span
               animate={{ rotate: isProductsOpen ? 180 : 0 }}
               className='text-[8px]'
@@ -71,15 +59,15 @@ export default function Navbar({ dict, lang }: NavbarProps) {
               >
                 <Link
                   href={`/${lang}/urunler/dus-kabinleri`}
-                  className='block px-4 py-3 text-[9px] hover:bg-amber-600/20 hover:text-amber-600 transition-all border-b border-white/5'
+                  className='block px-4 py-3 text-[10px] hover:bg-amber-600/20 hover:text-amber-600 transition-all border-b border-white/5'
                 >
-                  DUŞ KABİNLERİ
+                  {nav.shower_cabins || 'DUŞ KABİNLERİ'}
                 </Link>
                 <Link
                   href={`/${lang}/urunler/cam-aksesuarlari`}
-                  className='block px-4 py-3 text-[9px] hover:bg-amber-600/20 hover:text-amber-600 transition-all'
+                  className='block px-4 py-3 text-[10px] hover:bg-amber-600/20 hover:text-amber-600 transition-all'
                 >
-                  CAM AKSESUARLARI
+                  {nav.glass_accessories || 'CAM AKSESUARLARI'}
                 </Link>
               </motion.div>
             )}
@@ -90,17 +78,16 @@ export default function Navbar({ dict, lang }: NavbarProps) {
           href={`/${lang}/referanslar`}
           className='hover:text-amber-600 transition-all'
         >
-          REFERANSLAR
+          {nav.references || 'REFERANSLAR'}
         </Link>
         <Link
           href={`/${lang}/iletisim`}
           className='hover:text-amber-600 transition-all'
         >
-          İLETİŞİM
+          {nav.contact}
         </Link>
       </div>
 
-      {/* Sağ Taraf: Dil & Hamburger */}
       <div className='flex items-center gap-6'>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -121,7 +108,6 @@ export default function Navbar({ dict, lang }: NavbarProps) {
         </button>
       </div>
 
-      {/* MOBİL MENÜ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -136,34 +122,33 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                 href={`/${lang}`}
                 className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
               >
-                ANASAYFA
+                {nav.home}
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
                 href={`/${lang}/hakkimizda`}
                 className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
               >
-                HAKKIMIZDA
+                {nav.about}
               </Link>
 
-              {/* MOBİL ÜRÜNLER ALT LİNKLERİ */}
               <div className='flex flex-col gap-3 pl-2 border-l border-amber-600/30'>
                 <span className='text-[9px] text-amber-600 font-bold tracking-widest'>
-                  ÜRÜNLER
+                  {nav.products}
                 </span>
                 <Link
                   onClick={() => setIsOpen(false)}
                   href={`/${lang}/urunler/dus-kabinleri`}
                   className='text-[9px] text-white/50 hover:text-white uppercase'
                 >
-                  - Duş Kabinleri
+                  - {nav.shower_cabins || 'Duş Kabinleri'}
                 </Link>
                 <Link
                   onClick={() => setIsOpen(false)}
                   href={`/${lang}/urunler/cam-aksesuarlari`}
                   className='text-[9px] text-white/50 hover:text-white uppercase'
                 >
-                  - Cam Aksesuarları
+                  - {nav.glass_accessories || 'Cam Aksesuarları'}
                 </Link>
               </div>
 
@@ -172,14 +157,14 @@ export default function Navbar({ dict, lang }: NavbarProps) {
                 href={`/${lang}/referanslar`}
                 className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
               >
-                REFERANSLAR
+                {nav.references || 'REFERANSLAR'}
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
                 href={`/${lang}/iletisim`}
                 className='text-[10px] tracking-[0.3em] text-white/70 hover:text-amber-600 uppercase'
               >
-                İLETİŞİM
+                {nav.contact}
               </Link>
             </div>
           </motion.div>

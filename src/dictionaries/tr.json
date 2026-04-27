@@ -1,12 +1,63 @@
 {
   "nav": {
     "home": "Anasayfa",
-    "products": "Ürünler",
     "about": "Hakkımızda",
+    "products": "Ürünler",
+    "shower_cabins": "Duş Kabinleri",
+    "glass_accessories": "Cam Aksesuarları",
+    "references": "Referanslar",
     "contact": "İletişim"
   },
+  "home": {
+    "hero_title": "Estetik Dokunuş",
+    "hero_subtitle": "Banyonuzun Yeni Mimari Kimliği",
+    "services_title": "Hizmetlerimiz",
+    "service_1": "Özel Ölçü Duşakabin İmalatı",
+    "service_2": "Temperli Cam Aksesuarları",
+    "service_3": "Banyo Mimari Modelleme",
+    "service_4": "Kurumsal Proje Uygulama",
+    "featured_tag": "Koleksiyon 2026",
+    "featured_title_1": "Öne Çıkan",
+    "featured_title_2": "Tasarımlar",
+    "featured_desc": "Banyonuzun ruhunu değiştiren, şeffaflığın ve metalin kusursuz uyumuyla hazırlanan en yeni serilerimizi keşfedin.",
+    "values_1": "Geniş Ürün Yelpazesi",
+    "values_2": "Profesyonel Ekip",
+    "values_3": "Estetik Tasarım",
+    "values_4": "Müşteri Memnuniyeti"
+  },
+  "about": {
+    "title_1": "Modernliğin",
+    "title_2": "Estetik Dokunuşu",
+    "subtitle": "Bir Konya Markası, Bir Dünya Standardı",
+    "p1": "2023 yılında %100 yerli sermaye ve yerli işgücü ile temelleri atılan GNL INOVASYON YAPI SAN VE TİC LTD ŞTİ, Konya’nın üretim gücünü modern mimariyle birleştiren vizyoner bir markadır.",
+    "p2": "Tüm ürünlerimizde sahip olduğumuz CE Sertifikası, uluslararası kalite ve güvenlik standartlarına olan sadakatimizin bir tescilidir.",
+    "stat_1": "Yıllık Deneyim",
+    "stat_2": "Tamamlanan Proje",
+    "badge_1": "Kusursuz",
+    "badge_2": "İşçilik",
+    "quote": "Camın berraklığı, suyun huzuruyla buluştuğunda; tasarım sadece bir form olmaktan çıkıp bir yaşam deneyimine dönüşür.",
+    "distributorship_title": "Yetkili Bayiliklerimiz",
+    "distributorship_desc": "Sektörün öncü markalarından Shower bünyesinde yetkili bayi olarak, en yüksek kalite standartlarında hizmet sunuyoruz."
+  },
   "footer": {
-    "rights": "Tüm Hakları Saklıdır.",
-    "design": "Tasarım"
+    "description": "GNL İnovasyon, modern banyo çözümleri ve estetik dokunuşlarla yaşam alanlarınıza değer katar.",
+    "quick_links": "Hızlı Menü",
+    "contact_us": "Bize Ulaşın",
+    "rights": "Tüm Hakları Saklıdır",
+    "design": "Tasarım",
+    "cookies": "Çerez Politikası"
+  },
+  "contact": {
+    "title_1": "Fikirlerinizi",
+    "title_2": "Hayata Geçirin",
+    "address_label": "Adres",
+    "email_label": "E-Posta",
+    "phone_label": "Telefon",
+    "hours_label": "Çalışma Saatleri",
+    "days": "Pazartesi - Cumartesi",
+    "name_field": "Adınız",
+    "email_field": "E-Posta",
+    "message_field": "Mesajınız",
+    "send_button": "Mesajı Gönder"
   }
 }

@@ -7,7 +7,7 @@ export default async function DusKabinleriPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const categories = await getCategoriesByParent('dus-kabinleri');
+  const categories = await getCategoriesByParent('dus-kabinleri', lang);
 
   return (
     <div className='min-h-screen pt-32 pb-20 px-6 md:px-12 bg-black text-white'>
