@@ -45,7 +45,7 @@ export default async function RootLayout({
         <ScrollToTop />
         <CookieBanner />
 
-        <Footer dict={dict} />
+        <Footer dict={dict} lang={lang} />
       </body>
     </html>
   );

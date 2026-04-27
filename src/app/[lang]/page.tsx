@@ -1,5 +1,6 @@
 import { getDictionary } from '@/lib/get-dictionary';
 import HomeClient from '@/components/HomeClient';
+import BrandMarquee from '@/components/BrandMarquee';
 
 export default async function Home({
   params,
@@ -43,6 +44,7 @@ export default async function Home({
           </div>
         </section>
       </section>
+      <BrandMarquee />
     </main>
   );
 }
