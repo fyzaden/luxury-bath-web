@@ -33,8 +33,7 @@ export default function ScrollToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={scrollToTop}
-          className='fixed bottom-8 right-8 z-[90] group'
-          aria-label='Yukarı Çık'
+          className='fixed bottom-6 left-6 z-[9998] p-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-xl'
         >
           <div className='relative flex items-center justify-center w-12 h-12'>
             <div className='absolute inset-0 bg-brand-black/80 backdrop-blur-md border border-white/10 rounded-full transition-all duration-300 group-hover:border-amber-600/50 group-hover:scale-110' />

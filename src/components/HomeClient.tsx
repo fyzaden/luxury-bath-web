@@ -18,7 +18,7 @@ export default function HomeClient({ dict }: { dict: any }) {
 
   return (
     <main className='relative bg-brand-black font-sans'>
-      <section className='relative min-h-[80vh] md:h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-48 pb-10 px-4 md:px-10'>
+      <section className='relative min-h-[85vh] md:h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-48 pb-10 px-4'>
         <div
           className='absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed'
           style={{
@@ -36,7 +36,7 @@ export default function HomeClient({ dict }: { dict: any }) {
           <h1 className='text-4xl sm:text-5xl md:text-[80px] font-bold tracking-tighter text-white leading-[1.1] drop-shadow-2xl break-words'>
             {dict?.home?.hero_title}
           </h1>
-          <p className='text-[10px] md:text-sm font-light tracking-[0.2em] md:tracking-[0.6em] text-amber-500 uppercase leading-relaxed'>
+          <p className='text-[10px] md:text-sm font-light tracking-[0.2em] md:tracking-[0.6em] text-amber-500 uppercase leading-relaxed max-w-xs mx-auto'>
             {dict?.home?.hero_subtitle}
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function HomeClient({ dict }: { dict: any }) {
 
             <div className='h-[1px] w-20 bg-amber-600/30'></div>
 
-            <p className='text-white/40 text-sm md:text-base leading-relaxed font-light italic tracking-wide max-w-sm'>
+            <p className='text-white/40 text-sm leading-relaxed font-light italic tracking-wide max-w-[300px] md:max-w-sm mx-auto md:mx-0'>
               {dict?.home?.featured_desc}
             </p>
 
