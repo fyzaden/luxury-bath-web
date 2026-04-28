@@ -17,31 +17,34 @@ export async function generateMetadata({
   return {
     title:
       lang === 'tr'
-        ? 'GNL Inovasyon | Duşakabin ve Cam Aksesuarları'
+        ? 'GNL İnovasyon | Duşakabin ve Cam Aksesuarları'
         : 'GNL Innovation | Shower Cabins and Glass Accessories',
     description:
       lang === 'tr'
-        ? 'GNL Inovasyon, modern banyo çözümleri sunar. Kaliteli ve dayanıklı banyo ürünleri.'
+        ? 'GNL İnovasyon, modern banyo çözümleri sunar. Kaliteli ve dayanıklı banyo ürünleri.'
         : 'GNL Innovation offers modern bathroom solutions. High quality and durable bathroom products.',
   };
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: Promise<{ lang: 'tr' | 'en' }>;
+  params: Promise<{ lang: string }>; //
 }) {
-  const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const params = await props.params;
+  const lang = params.lang;
+
+  const dict = await getDictionary(lang as 'tr' | 'en');
 
   return (
     <html lang={lang} suppressHydrationWarning={true}>
-      <body className='antialiased font-sans selection:bg-white selection:text-black bg-brand-black'>
+      <body
+        className='antialiased font-sans selection:bg-white selection:text-black bg-brand-black'
+        suppressHydrationWarning={true}
+      >
         <Toaster position='bottom-right' reverseOrder={false} />
         <Navbar dict={dict} lang={lang} />
-        {children}
+
+        {props.children}
 
         <ScrollToTop />
         <CookieBanner />
