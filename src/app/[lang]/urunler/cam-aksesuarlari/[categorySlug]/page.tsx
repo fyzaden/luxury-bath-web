@@ -1,6 +1,8 @@
 import { getProductsByCategory } from '@/lib/sanity.queries';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
+
 export default async function CategoryDetailPage({
   params,
 }: {
