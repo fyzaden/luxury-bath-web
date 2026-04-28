@@ -69,6 +69,14 @@ export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
                 >
                   {nav.glass_accessories || 'CAM AKSESUARLARI'}
                 </Link>
+                <Link
+                  href='https://shower.com.tr/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='block px-4 py-3 text-[10px] hover:bg-amber-600/20 hover:text-amber-600 transition-all'
+                >
+                  SHOWER ÜRÜNLERİ ↗
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>
@@ -149,6 +157,15 @@ export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
                   className='text-[9px] text-white/50 hover:text-white uppercase'
                 >
                   - {nav.glass_accessories || 'Cam Aksesuarları'}
+                </Link>
+                <Link
+                  href='https://shower.com.tr/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  onClick={() => setIsOpen(false)}
+                  className='text-[9px] text-white/50 hover:text-white uppercase italic'
+                >
+                  - SHOWER ÜRÜNLERİ ↗
                 </Link>
               </div>
 

@@ -35,6 +35,7 @@ export default function AboutClient({ dict }: { dict: any }) {
                 </p>
                 <p>{dict.about.p1}</p>
                 <p>{dict.about.p2}</p>
+                <p>{dict.about.distributorship_desc}</p>
               </div>
             </div>
 

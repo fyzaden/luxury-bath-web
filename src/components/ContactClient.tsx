@@ -1,5 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
+import { toast } from 'react-hot-toast';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function ContactClient({
   dict,
@@ -9,7 +12,54 @@ export default function ContactClient({
   lang: string;
 }) {
   const contact = dict.contact;
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+
+    // --- KURUMSAL MAİLİ ALDIĞINDA BURADAKİ BİLGİLERİ DOLDURACAKSIN ---
+    const SERVICE_ID = 'YOUR_SERVICE_ID'; // EmailJS'den alacağın servis ID
+    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // EmailJS'den alacağın template ID
+    const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // EmailJS'den alacağın public key
+    // ----------------------------------------------------------
+
+    try {
+      await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY,
+      );
+
+      toast.success(
+        lang === 'tr'
+          ? 'Mesajınız başarıyla iletildi!'
+          : 'Message sent successfully!',
+        {
+          style: {
+            background: '#0a0a0a',
+            color: '#fff',
+            border: '1px solid #d97706',
+            borderRadius: '0px',
+            fontSize: '12px',
+          },
+        },
+      );
+
+      formRef.current.reset();
+    } catch (error) {
+      toast.error(
+        lang === 'tr' ? 'Mesaj gönderilemedi.' : 'Failed to send message.',
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <main className='bg-brand-black min-h-screen pt-40 pb-20 px-6 md:px-12'>
       <div className='max-w-7xl mx-auto'>
@@ -73,7 +123,7 @@ export default function ContactClient({
             whileInView={{ opacity: 1, x: 0 }}
             className='bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-sm relative overflow-hidden'
           >
-            <form className='space-y-6 relative z-10'>
+            <form className='space-y-6 relative z-10' onSubmit={handleSubmit}>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                 <div className='space-y-2'>
                   <label className='text-[10px] uppercase tracking-widest text-white/40 ml-1'>
@@ -110,6 +160,64 @@ export default function ContactClient({
             <div className='absolute -bottom-10 -right-10 text-white/[0.02] text-[150px] font-bold pointer-events-none select-none'>
               GNL
             </div>
+          </motion.div>
+          {/* Form Bölümü (Sağ Sütun) */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className='bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-sm relative overflow-hidden'
+          >
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className='space-y-6 relative z-10'
+            >
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div className='space-y-2'>
+                  <label className='text-[10px] uppercase tracking-widest text-white/40 ml-1'>
+                    {contact.name_field}
+                  </label>
+                  <input
+                    name='user_name' // EmailJS için önemli
+                    required
+                    type='text'
+                    className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
+                  />
+                </div>
+                <div className='space-y-2'>
+                  <label className='text-[10px] uppercase tracking-widest text-white/40 ml-1'>
+                    {contact.email_field}
+                  </label>
+                  <input
+                    name='user_email' // EmailJS için önemli
+                    required
+                    type='email'
+                    className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
+                  />
+                </div>
+              </div>
+              <div className='space-y-2'>
+                <label className='text-[10px] uppercase tracking-widest text-white/40 ml-1'>
+                  {contact.message_field}
+                </label>
+                <textarea
+                  name='message' // EmailJS için önemli
+                  required
+                  rows={4}
+                  className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
+                />
+              </div>
+              <button
+                disabled={isSubmitting}
+                className='w-full bg-amber-600 hover:bg-amber-700 text-brand-black font-bold py-5 px-8 transition-all duration-300 uppercase text-xs tracking-[0.3em] disabled:opacity-50'
+              >
+                {isSubmitting
+                  ? lang === 'tr'
+                    ? 'GÖNDERİLİYOR...'
+                    : 'SENDING...'
+                  : contact.send_button}
+              </button>
+            </form>
           </motion.div>
         </div>
       </div>

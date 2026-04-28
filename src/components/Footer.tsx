@@ -203,7 +203,24 @@ export default function Footer({ dict, lang }: FooterProps) {
                   : 'Shower Cabins and Glass Accessories'}
               </p>
             </Link>
-
+            {/* Footer içindeki uygun bir yere, örneğin sağ sütuna */}
+            <div className='mt-8 mb-8 pt-8 border-t border-white/5 flex items-center justify-end gap-3 opacity-40 hover:opacity-80 transition-opacity'>
+              <span className='text-[9px] uppercase tracking-widest text-white/50'>
+                Yetkili Bayi:
+              </span>
+              <a
+                href='https://shower.com.tr/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='cursor-pointer'
+              >
+                <img
+                  src='/images/partners/shower-logo.png'
+                  alt='Shower Logo'
+                  className='h-5 w-auto brightness-125 grayscale hover:grayscale-0 transition-all'
+                />
+              </a>
+            </div>
             <div className='text-right'>
               <p className='text-[11px] text-white/30 tracking-widest'>
                 Design |{' '}
