@@ -6,6 +6,7 @@ import CookieBanner from '@/components/CookieBanner';
 import ScrollToTop from '@/components/ScrollToTop';
 import { getDictionary } from '@/lib/get-dictionary';
 import { Toaster } from 'react-hot-toast';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export async function generateMetadata({
   params,
@@ -45,7 +46,7 @@ export default async function RootLayout(props: {
         <Navbar dict={dict} lang={lang} />
 
         {props.children}
-
+        <WhatsAppButton />
         <ScrollToTop />
         <CookieBanner />
         <Footer dict={dict} lang={lang} />

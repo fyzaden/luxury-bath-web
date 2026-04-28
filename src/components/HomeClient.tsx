@@ -18,22 +18,25 @@ export default function HomeClient({ dict }: { dict: any }) {
 
   return (
     <main className='relative bg-brand-black font-sans'>
-      <section className='relative h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-48 pb-20 px-10 '>
+      <section className='relative min-h-[80vh] md:h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-48 pb-10 px-4 md:px-10'>
         <div
-          className='absolute inset-0 bg-cover bg-center bg-no-repeat '
+          className='absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed'
           style={{
             backgroundImage: `url('/images/OTTI/Otel_tipi1.jpg')`,
-            backgroundAttachment: 'fixed',
+            backgroundAttachment:
+              typeof window !== 'undefined' && window.innerWidth < 768
+                ? 'scroll'
+                : 'fixed',
           }}
         >
-          <div className='absolute inset-0 bg-black/30 overlay-soft '></div>
+          <div className='absolute inset-0 bg-black/40 overlay-soft '></div>
         </div>
 
-        <div className='relative z-10 text-center space-y-4 px-6'>
-          <h1 className='text-6xl md:text-[120px] font-bold tracking-tighter text-white  leading-none drop-shadow-2xl'>
+        <div className='relative z-10 text-center space-y-6 px-4 w-full max-w-[100vw]'>
+          <h1 className='text-4xl sm:text-5xl md:text-[80px] font-bold tracking-tighter text-white leading-[1.1] drop-shadow-2xl break-words'>
             {dict?.home?.hero_title}
           </h1>
-          <p className='text-xs md:text-sm font-light tracking-[0.6em] text-amber-600 uppercase'>
+          <p className='text-[10px] md:text-sm font-light tracking-[0.2em] md:tracking-[0.6em] text-amber-500 uppercase leading-relaxed'>
             {dict?.home?.hero_subtitle}
           </p>
         </div>
@@ -44,7 +47,7 @@ export default function HomeClient({ dict }: { dict: any }) {
 
       <section className='flex flex-col md:flex-row h-auto md:h-screen bg-[#222222]'>
         <div
-          className='w-full md:w-1/2 h-96 md:h-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000'
+          className='w-full md:w-1/2 h-96 md:h-full bg-cover bg-center grayscale-0 md:grayscale md:hover:grayscale-0 transition-all duration-1000'
           style={{ backgroundImage: `url('/images/KATYA/KATYA_SARI.jpg')` }}
         ></div>
 
@@ -73,7 +76,9 @@ export default function HomeClient({ dict }: { dict: any }) {
               </span>
               <h2 className='text-4xl md:text-6xl font-bold tracking-tighter text-white leading-tight'>
                 {dict?.home?.featured_title_1} <br />
-                <span className='italic font-light opacity-80'>Tasarımlar</span>
+                <span className='italic font-light opacity-80'>
+                  {dict?.home?.featured_title_2}
+                </span>
               </h2>
             </div>
 

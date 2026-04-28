@@ -62,7 +62,7 @@ export default function AboutClient({ dict }: { dict: any }) {
             className='relative group lg:mt-24'
           >
             <div
-              className='aspect-[3/4] bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000 rounded-sm shadow-2xl relative z-10'
+              className='aspect-[3/4] bg-cover bg-center grayscale-0 md:grayscale md:hover:grayscale-0 transition-all duration-1000 rounded-sm shadow-2xl relative z-10'
               style={{
                 backgroundImage: `url('/images/SUPERLUX/dusakabin6.jpeg')`,
               }}
