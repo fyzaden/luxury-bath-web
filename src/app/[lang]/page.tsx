@@ -16,7 +16,7 @@ export default async function Home({
 
       <section className='py-32 px-10 bg-[#111111] border-t border-white/5'>
         <section className='py-32 px-10 bg-brand-black border-t border-white/5'>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto'>
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto grayscale-0 md:grayscale md:hover:grayscale-0 '>
             {' '}
             {[
               { title: dict.home.values_1, icon: '📐' },
