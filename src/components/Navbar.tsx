@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import LangSwitcher from './LangSwitcher';
@@ -12,15 +13,24 @@ export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
 
   return (
     <nav className='fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-brand-black/20 backdrop-blur-md border-white/5'>
-      <Link href={`/${lang}`} className='flex flex-col text-white z-[60]'>
-        <span className='text-3xl md:text-3xl font-bold tracking-tighter leading-none'>
-          GNL
-        </span>
-        <span className='text-[10px] font-medium uppercase tracking-[0.3em] mt-1 text-amber-600'>
-          {lang === 'tr'
-            ? 'Duşakabin ve Cam Aksesuarları'
-            : 'Shower Cabins and Glass Accessories'}
-        </span>
+      <Link href={`/${lang}`} className='flex flex-col items-center group'>
+        <div className='relative w-32 h-10 md:w-40 md:h-12 transition-transform duration-300 group-hover:scale-105'>
+          <Image
+            src='/images/gnl-logo.png'
+            alt='GNL Logo'
+            fill
+            sizes='(max-width: 768px) 128px, 160px'
+            className='object-contain'
+            priority
+          />
+        </div>
+        <div className='mt-1 flex flex-col items-center'>
+          <span className='text-[8px] md:text-[10px] text-white/90 tracking-[0.3em] uppercase font-light leading-none'>
+            {lang === 'tr'
+              ? 'Duşakabin ve Cam Aksesuarları'
+              : 'Shower Cabins and Glass Accessories'}
+          </span>
+        </div>
       </Link>
 
       <div className='hidden lg:flex gap-8 text-[12px] font-semibold tracking-[0.2em] uppercase  text-white/80 items-center'>

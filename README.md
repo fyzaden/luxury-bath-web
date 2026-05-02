@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### 📝 Notlar
 
-## Getting Started
+- WhatsApp iletişim numarası: `+905432412527`
+- Tasarım konsepti: "Estetik Dokunuş, Banyonuzun Yeni Mimari Kimliği"
 
-First, run the development server:
+# 🚿 GNL Duşakabin ve Cam Aksesuarları
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Bu proje, **GNL Duşakabin ve Cam Aksesuarları** markası için geliştirilmiş, modern, hızlı ve kullanıcı dostu bir web sitesidir. Şıklığı ve teknik detayları ön plana çıkaran estetik bir tasarım anlayışıyla geliştirilmiştir.
+
+## ✨ Öne Çıkan Özellikler
+
+- **⚡ Next.js 15 & App Router:** En güncel React framework'ü ile yüksek performans ve SEO uyumu.
+- **🌍 Çok Dilli Destek (i18n):** Türkçe ve İngilizce dil seçenekleriyle küresel erişilebilirlik.
+- **🎨 Tailwind CSS:** Modern ve tamamen responsive (mobil uyumlu) arayüz tasarımı.
+- **🎭 Framer Motion:** Sayfa geçişleri ve butonlar için pürüzsüz animasyonlar.
+- **📱 WhatsApp Entegrasyonu:** Müşterilerin doğrudan iletişime geçebileceği hızlı erişim butonu.
+- **🖼️ Dinamik Ürün Sergileme:** "Öne Çıkan Tasarımlar" bölümünde interaktif slider yapısı.
+
+## 🛠️ Kullanılan Teknolojiler
+
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Dil:** [TypeScript](https://www.typescriptlang.org/)
+- **Stil:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animasyon:** [Framer Motion](https://www.framer.com/motion/)
+- **İkonlar:** [Lucide React](https://lucide.dev/) & Custom SVGs
+
+## 🚀 Başlangıç
+
+Projeyi yerel bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
+
+1.  **Depoyu klonlayın:**
+    ```bash
+    git clone [https://github.com/kullaniciadi/gnl-dusakabin.git](https://github.com/kullaniciadi/gnl-dusakabin.git)
+    ```
+2.  **Bağımlılıkları yükleyin:**
+    ```bash
+    npm install
+    # veya
+    yarn install
+    ```
+3.  **Geliştirme sunucusunu başlatın:**
+    ```bash
+    npm run dev
+    ```
+4.  Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açarak sonucu görün.
+
+## 📂 Proje Yapısı
+
+```text
+├── app/              # Sayfalar, Layout ve Dil (i18n) yapılandırması
+├── components/       # Tekrar kullanılabilir UI bileşenleri (Hero, Button, vb.)
+├── public/           # Resimler, ikonlar ve statik dosyalar
+├── lib/              # Sözlükler (dictionaries) ve yardımcı fonksiyonlar
+├── styles/           # Global CSS ve Tailwind konfigürasyonları
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

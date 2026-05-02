@@ -8,7 +8,16 @@ export default async function CategoryDetailPage({
   params: Promise<{ lang: string; categorySlug: string }>;
 }) {
   const { lang, categorySlug } = await params;
-  const products = await getProductsByCategory(categorySlug);
+  const rawProducts = await getProductsByCategory(categorySlug);
+
+  const products = [...rawProducts].sort((a: any, b: any) => {
+    const isASpecial = a.code?.includes('-000');
+    const isBSpecial = b.code?.includes('-000');
+
+    if (isASpecial && !isBSpecial) return 1;
+    if (!isASpecial && isBSpecial) return -1;
+    return 0;
+  });
 
   return (
     <div className='min-h-screen pt-32 pb-20 px-6 md:px-12 bg-black text-white'>
@@ -22,12 +31,12 @@ export default async function CategoryDetailPage({
             key={product._id}
             className='group bg-zinc-900/40 border border-white/5 overflow-hidden transition-all duration-300 hover:border-amber-600/50 hover:shadow-[0_0_20px_rgba(217,119,6,0.1)]'
           >
-            <div className='aspect-square w-full relative overflow-hidden bg-zinc-800'>
+            <div className='aspect-square w-full relative overflow-hidden bg-white'>
               {product.imageUrl ? (
                 <img
                   src={product.imageUrl}
                   alt={product.code}
-                  className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+                  className='w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105'
                 />
               ) : (
                 <div className='w-full h-full flex flex-col items-center justify-center text-white/10'>
