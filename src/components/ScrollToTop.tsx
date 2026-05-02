@@ -33,25 +33,22 @@ export default function ScrollToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={scrollToTop}
-          className='fixed bottom-6 left-6 z-[9999] p-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-xl transition-all'
+          className='fixed bottom-6 left-6 z-[9999] flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white shadow-xl transition-all hover:bg-white/20'
         >
-          <div className='relative flex items-center justify-center w-12 h-12'>
-            <div className='absolute inset-0 bg-brand-black/80 backdrop-blur-md border border-white/10 rounded-full transition-all duration-300 group-hover:border-amber-600/50 group-hover:scale-110' />
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='20'
-              height='20'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              className='relative z-10 text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:text-amber-600'
-            >
-              <path d='m18 15-6-6-6 6' />
-            </svg>
-          </div>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            className='relative z-10 text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:text-amber-600'
+          >
+            <path d='m18 15-6-6-6 6' />
+          </svg>
         </motion.button>
       )}
     </AnimatePresence>
