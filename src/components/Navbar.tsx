@@ -15,14 +15,19 @@ export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
     <nav className='fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-brand-black/20 backdrop-blur-md border-white/5'>
       <Link href={`/${lang}`} className='flex flex-col items-center group'>
         <div className='relative w-32 h-10 md:w-40 md:h-12 transition-transform duration-300 group-hover:scale-105'>
-          <Image
-            src='/images/gnl-logo.png'
-            alt='GNL Logo'
-            fill
-            sizes='(max-width: 768px) 128px, 160px'
-            className='object-contain'
-            priority
-          />
+          <div
+            className='w-full h-full bg-amber-600'
+            style={{
+              maskImage: 'url("/images/gnl-logo.png")',
+              WebkitMaskImage: 'url("/images/gnl-logo.png")',
+              maskSize: 'contain',
+              WebkitMaskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              WebkitMaskRepeat: 'no-repeat',
+              maskPosition: 'center',
+              WebkitMaskPosition: 'center',
+            }}
+          ></div>
         </div>
         <div className='mt-1 flex flex-col items-center'>
           <span className='text-[8px] md:text-[10px] text-white/90 tracking-[0.3em] uppercase font-light leading-none'>
