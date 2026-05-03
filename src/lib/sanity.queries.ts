@@ -1,16 +1,14 @@
 import { client } from '@/sanity/lib/client';
 import { draftMode } from 'next/headers';
 
-// Taslakları görebilmek için yetkili bir client oluşturuyoruz
 const getClient = async () => {
   const isDraft = (await draftMode()).isEnabled;
 
-  // Eğer Draft Mode aktifse, okuma yetkisi olan token ile taslakları çek
   if (isDraft) {
     return client.withConfig({
-      token: process.env.SANITY_API_READ_TOKEN, // Vercel'e eklemeniz gereken token
+      token: process.env.SANITY_API_READ_TOKEN, //
       perspective: 'previewDrafts',
-      useCdn: false, // Taslaklarda güncel veriyi almak için CDN kapatılmalı
+      useCdn: false,
     });
   }
   return client;

@@ -7,13 +7,11 @@ export async function GET(request: Request) {
   const secret = searchParams.get('secret');
   const slug = searchParams.get('slug');
 
-  // Güvenlik: Vercel'e eklediğin gizli bir şifreyle kontrol et
   if (secret !== process.env.SANITY_PREVIEW_SECRET) {
     return new Response('Geçersiz token', { status: 401 });
   }
 
-  (await draftMode()).enable(); // Önizleme modunu aktif et
+  (await draftMode()).enable();
 
-  // Müşteriyi ana sayfaya veya belirli bir kategoriye yönlendir
   redirect(`/${slug || 'tr'}`);
 }
