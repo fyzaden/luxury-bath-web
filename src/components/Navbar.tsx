@@ -32,7 +32,7 @@ export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
           </span>
         </div>
       </Link>
-      //cdcsc
+
       <div className='hidden lg:flex gap-8 text-[12px] font-semibold tracking-[0.2em] uppercase  text-white/80 items-center'>
         <Link href={`/${lang}`} className='hover:text-amber-600 transition-all'>
           {nav.home}
