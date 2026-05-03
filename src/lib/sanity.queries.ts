@@ -1,4 +1,20 @@
 import { client } from '@/sanity/lib/client';
+import { draftMode } from 'next/headers';
+
+// Taslakları görebilmek için yetkili bir client oluşturuyoruz
+const getClient = async () => {
+  const isDraft = (await draftMode()).isEnabled;
+
+  // Eğer Draft Mode aktifse, okuma yetkisi olan token ile taslakları çek
+  if (isDraft) {
+    return client.withConfig({
+      token: process.env.SANITY_API_READ_TOKEN, // Vercel'e eklemeniz gereken token
+      perspective: 'previewDrafts',
+      useCdn: false, // Taslaklarda güncel veriyi almak için CDN kapatılmalı
+    });
+  }
+  return client;
+};
 
 export async function getCategoriesByParent(parent: string, lang: string) {
   const query = `*[_type == "category" && parentCategory == $parent] {
@@ -7,7 +23,8 @@ export async function getCategoriesByParent(parent: string, lang: string) {
     "imageUrl": image.asset->url
   }`;
 
-  return await client.fetch(query, { parent, lang });
+  const currentClient = await getClient();
+  return await currentClient.fetch(query, { parent, lang });
 }
 
 export async function getProductsByCategory(categorySlug: string) {
@@ -17,5 +34,6 @@ export async function getProductsByCategory(categorySlug: string) {
     "imageUrl": productImage.asset->url
   }`;
 
-  return await client.fetch(query, { categorySlug });
+  const currentClient = await getClient();
+  return await currentClient.fetch(query, { categorySlug });
 }
