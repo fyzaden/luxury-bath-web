@@ -12,24 +12,19 @@ export default function Navbar({ dict, lang }: { dict: any; lang: string }) {
   const nav = dict.nav;
 
   return (
-    <nav className='fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-brand-black/20 backdrop-blur-md border-white/5'>
-      <Link href={`/${lang}`} className='flex flex-col items-center group'>
-        <div className='relative w-32 h-10 md:w-40 md:h-12 transition-transform duration-300 group-hover:scale-105'>
-          <div
-            className='w-full h-full bg-amber-600'
-            style={{
-              maskImage: 'url("/images/gnl-logo.png")',
-              WebkitMaskImage: 'url("/images/gnl-logo.png")',
-              maskSize: 'contain',
-              WebkitMaskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              WebkitMaskRepeat: 'no-repeat',
-              maskPosition: 'center',
-              WebkitMaskPosition: 'center',
-            }}
-          ></div>
+    <nav className='fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-3 bg-brand-black/20 backdrop-blur-md border-white/5'>
+      <Link href={`/${lang}`} className='flex flex-col items-start group'>
+        <div className='relative w-28 h-8 md:w-32 md:h-10 transition-transform duration-300 group-hover:scale-105'>
+          <Image
+            src='/images/gnl-logo.png'
+            alt='GNL Logo'
+            fill
+            sizes='(max-width: 768px) 144px, 176px'
+            className='object-contain object-left'
+            priority
+          />
         </div>
-        <div className='mt-1 flex flex-col items-center'>
+        <div className='mt-0.5 flex flex-col items-start'>
           <span className='text-[8px] md:text-[10px] text-white/90 tracking-[0.3em] uppercase font-light leading-none'>
             {lang === 'tr'
               ? 'Duşakabin ve Cam Aksesuarları'
