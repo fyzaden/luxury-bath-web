@@ -62,7 +62,7 @@ export default function Footer({ dict, lang }: FooterProps) {
                   <path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7' />
                 </svg>
                 <p className='group-hover:text-white transition-colors'>
-                  info@gnldusakabin.com
+                  dusakabincim@outlook.com.tr
                 </p>
               </Link>
               {/* Tel */}
@@ -203,7 +203,7 @@ export default function Footer({ dict, lang }: FooterProps) {
                   : 'Shower Cabins and Glass Accessories'}
               </p>
             </Link>
-            {/* Footer içindeki uygun bir yere, örneğin sağ sütuna */}
+
             <div className='mt-8 mb-8 pt-8 border-t border-white/5 flex items-center justify-end gap-3 opacity-40 hover:opacity-80 transition-opacity'>
               <span className='text-[9px] uppercase tracking-widest text-white/50'>
                 Yetkili Bayi:

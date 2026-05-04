@@ -98,7 +98,7 @@ export default function ContactClient({
                 {contact.email_label}
               </p>
               <p className='text-2xl text-white/80 font-light hover:text-amber-600 transition-colors'>
-                info@gnldusakabin.com
+                dusakabincim@outlook.com.tr
               </p>
             </div>
 
@@ -111,7 +111,6 @@ export default function ContactClient({
               </p>
             </div>
 
-            {/* HARİTA BURAYA GELDİ */}
             <div className='pt-10 border-t border-white/5'>
               <Map />
             </div>
