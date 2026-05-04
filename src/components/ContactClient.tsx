@@ -88,7 +88,7 @@ export default function ContactClient({
                 {contact.address_label}
               </p>
               <p className='text-white/60 text-lg font-light leading-relaxed max-w-sm group-hover:text-white transition-colors'>
-                Horozluhan Mah. Hotamış Sok. No:16/A <br />
+                Horozluhan Mah. Saraycık Sok. No:123 <br />
                 Selçuklu, Konya / Türkiye
               </p>
             </div>
