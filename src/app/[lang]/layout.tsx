@@ -24,6 +24,9 @@ export async function generateMetadata({
       lang === 'tr'
         ? 'GNL İnovasyon, modern banyo çözümleri sunar. Kaliteli ve dayanıklı banyo ürünleri.'
         : 'GNL Innovation offers modern bathroom solutions. High quality and durable bathroom products.',
+    icons: {
+      icon: '/favicon.ico',
+    },
   };
 }
 
@@ -42,7 +45,16 @@ export default async function RootLayout(props: {
         className='antialiased font-sans selection:bg-white selection:text-black bg-brand-black'
         suppressHydrationWarning={true}
       >
-        <Toaster position='bottom-right' reverseOrder={false} />
+        <Toaster
+          position='bottom-right'
+          toastOptions={{
+            style: {
+              background: '#18181b',
+              color: '#fff',
+              border: '1px solid rgba(255,255,255,0.1)',
+            },
+          }}
+        />
         <Navbar dict={dict} lang={lang} />
 
         {props.children}

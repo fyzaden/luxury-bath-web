@@ -1,8 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
-import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 import Map from './Map';
 
 export default function ContactClient({
@@ -13,54 +12,46 @@ export default function ContactClient({
   lang: string;
 }) {
   const contact = dict.contact;
-  const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!formRef.current) return;
-
     setIsSubmitting(true);
 
-    // --- KURUMSAL MAİLİ ALDIĞINDA BURADAKİ BİLGİLERİ DOLDURACAKSIN ---
-    const SERVICE_ID = 'YOUR_SERVICE_ID'; // EmailJS'den alacağın servis ID
-    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // EmailJS'den alacağın template ID
-    const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // EmailJS'den alacağın public key
-    // ----------------------------------------------------------
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+    // ContactClient.tsx içindeki handleSubmit fonksiyonu
+    const toastId = toast.loading(
+      lang === 'tr' ? 'Gönderiliyor...' : 'Sending...',
+    ); // ID burada oluşturulur
 
     try {
-      await emailjs.sendForm(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        formRef.current,
-        PUBLIC_KEY,
-      );
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-      toast.success(
-        lang === 'tr'
-          ? 'Mesajınız başarıyla iletildi!'
-          : 'Message sent successfully!',
-        {
-          style: {
-            background: '#0a0a0a',
-            color: '#fff',
-            border: '1px solid #d97706',
-            borderRadius: '0px',
-            fontSize: '12px',
-          },
-        },
-      );
-
-      formRef.current.reset();
+      if (response.ok) {
+        // ÖNEMLİ: { id: toastId } eklemezsen loading bildirimi kapanmaz
+        toast.success(lang === 'tr' ? 'Mesajınız iletildi!' : 'Message sent!', {
+          id: toastId,
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error();
+      }
     } catch (error) {
-      toast.error(
-        lang === 'tr' ? 'Mesaj gönderilemedi.' : 'Failed to send message.',
-      );
-    } finally {
-      setIsSubmitting(false);
+      toast.error(lang === 'tr' ? 'Hata oluştu.' : 'Error occurred.', {
+        id: toastId,
+      });
     }
   };
+
   return (
     <main className='bg-brand-black min-h-screen pt-40 pb-20 px-6 md:px-12'>
       <div className='max-w-7xl mx-auto'>
@@ -128,6 +119,8 @@ export default function ContactClient({
                     {contact.name_field}
                   </label>
                   <input
+                    required
+                    name='name' // Resend API için eklendi
                     type='text'
                     className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
                   />
@@ -137,6 +130,8 @@ export default function ContactClient({
                     {contact.email_field}
                   </label>
                   <input
+                    required
+                    name='email' // Resend API için eklendi
                     type='email'
                     className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
                   />
@@ -147,12 +142,21 @@ export default function ContactClient({
                   {contact.message_field}
                 </label>
                 <textarea
+                  required
+                  name='message' // Resend API için eklendi
                   rows={4}
                   className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
                 />
               </div>
-              <button className='w-full bg-amber-600 hover:bg-amber-700 text-brand-black font-bold py-5 px-8 transition-all duration-300 uppercase text-xs tracking-[0.3em]'>
-                {contact.send_button}
+              <button
+                disabled={isSubmitting}
+                className='w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-50 disabled:cursor-not-allowed text-brand-black font-bold py-5 px-8 transition-all duration-300 uppercase text-xs tracking-[0.3em]'
+              >
+                {isSubmitting
+                  ? lang === 'tr'
+                    ? 'BEKLEYİN...'
+                    : 'WAITING...'
+                  : contact.send_button}
               </button>
             </form>
             <div className='absolute -bottom-10 -right-10 text-white/[0.02] text-[150px] font-bold pointer-events-none select-none'>
