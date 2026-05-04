@@ -18,18 +18,18 @@ export default function ContactClient({
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-    };
-    // ContactClient.tsx içindeki handleSubmit fonksiyonu
     const toastId = toast.loading(
       lang === 'tr' ? 'Gönderiliyor...' : 'Sending...',
-    ); // ID burada oluşturulur
+    );
 
     try {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+      };
+
       const response = await fetch('/api/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -37,18 +37,21 @@ export default function ContactClient({
       });
 
       if (response.ok) {
-        // ÖNEMLİ: { id: toastId } eklemezsen loading bildirimi kapanmaz
-        toast.success(lang === 'tr' ? 'Mesajınız iletildi!' : 'Message sent!', {
+        toast.success(lang === 'tr' ? 'Mesaj iletildi!' : 'Sent!', {
           id: toastId,
         });
         (e.target as HTMLFormElement).reset();
       } else {
-        throw new Error();
+        const errorData = await response.json();
+        console.error('API Hatası:', errorData);
+        throw new Error('Response not ok');
       }
     } catch (error) {
-      toast.error(lang === 'tr' ? 'Hata oluştu.' : 'Error occurred.', {
-        id: toastId,
-      });
+      console.error('Gönderim Hatası:', error);
+
+      toast.error(lang === 'tr' ? 'Hata oluştu.' : 'Error.', { id: toastId });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -120,7 +123,7 @@ export default function ContactClient({
                   </label>
                   <input
                     required
-                    name='name' // Resend API için eklendi
+                    name='name'
                     type='text'
                     className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
                   />
@@ -131,7 +134,7 @@ export default function ContactClient({
                   </label>
                   <input
                     required
-                    name='email' // Resend API için eklendi
+                    name='email'
                     type='email'
                     className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
                   />
@@ -143,7 +146,7 @@ export default function ContactClient({
                 </label>
                 <textarea
                   required
-                  name='message' // Resend API için eklendi
+                  name='message'
                   rows={4}
                   className='w-full bg-white/[0.03] border border-white/10 px-4 py-4 text-white focus:outline-none focus:border-amber-600/50 transition-colors'
                 />
