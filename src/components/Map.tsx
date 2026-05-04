@@ -1,8 +1,8 @@
 'use client';
 
 const Map = () => {
-  const mapUrl =
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.16335!2d32.519503!3d37.9265147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d0859942478f77%3A0x633364f9f6e6258f!2zSG9yb3psdWhhbiwgU2FyYXljxLFrIFNrLiBObzoxMjMsIDQyMTAwIFNlbMOndWtsdS9Lbnlh!5e0!3m2!1str!2str!4v1714856000000!5m2!1str!2str';
+  const query = 'Horozluhan Mah. Saraycık Sk. No:123 Selçuklu Konya';
+  const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <div className='w-full h-[450px] md:h-[450px] rounded-xl overflow-hidden shadow-2xl border border-white/10'>
