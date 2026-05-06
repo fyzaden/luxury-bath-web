@@ -41,6 +41,12 @@ export default async function RootLayout(props: {
 
   return (
     <html lang={lang} suppressHydrationWarning={true}>
+      <head>
+        <meta
+          name='google-site-verification'
+          content='SV-pJxmTWDmJYWPNPstZUf2VNSfo_TtTetoUu4sJd9s'
+        />
+      </head>
       <body
         className='antialiased font-sans selection:bg-white selection:text-black bg-brand-black'
         suppressHydrationWarning={true}
