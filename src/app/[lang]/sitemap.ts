@@ -10,10 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     '/tr/hakkimizda',
     '/tr/urunler',
+    '/tr/referanslar',
     '/tr/iletisim',
 
     '/en/about',
     '/en/products',
+    '/en/references',
     '/en/contact',
   ];
 
